@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tambah Catatan</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: rgb(252, 254, 201);
+      color: #000000;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 700px;
+      margin: 50px auto;
+      background: linear-gradient(to bottom, #099ff099, #00ff6e5f);
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    h1 {
+      text-align: center;
+      background-color: white;
+      padding: 10px;
+      border-radius: 10px;
+      margin-bottom: 30px;
+      color: rgb(0, 0, 0);
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 15px;
+      border: 1px solid rgb(178, 178, 178);
+      border-radius: 6px;
+      font-size: 1em;
+      background: #fff;
+      color: #000;
+      box-sizing: border-box;
+      box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 150px;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background: #28a745;
+      color: white;
+      font-size: 1em;
+      font-weight: bold;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background: #218838;
+    }
+
+    .link {
+      display: block;
+      padding: 8px;
+      margin-top: 20px;
+      background: #007bff;
+      color: white;
+      text-align: center;
+      border-radius: 8px;
+      text-decoration: none;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .link:hover {
+      background: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Tambah Catatan</h1>
+    <form id="noteForm">
+      <input type="text" id="title" placeholder="Judul Catatan" required />
+      <textarea id="content" placeholder="Isi catatan..." required></textarea>
+      <button type="submit">Simpan</button>
+    </form>
+    <a class="link" href="list.html"><b>Lihat Daftar Catatan</b></a>
+  </div>
+
+  <script>
+    const form = document.getElementById('noteForm');
+    const titleInput = document.getElementById('title');
+    const contentInput = document.getElementById('content');
+    let notes = JSON.parse(localStorage.getItem('notes')) || [];
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const title = titleInput.value.trim();
+      const content = contentInput.value.trim();
+      if (title && content) {
+        notes.push({ title, content });
+        localStorage.setItem('notes', JSON.stringify(notes));
+        titleInput.value = '';
+        contentInput.value = '';
+        alert('Catatan berhasil disimpan!');
+        window.location.href = 'list.html';
+      }
+    });
+  </script>
+</body>
+</html>
