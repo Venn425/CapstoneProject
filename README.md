@@ -53,7 +53,6 @@ Aplikasi web sederhana untuk mencatat, menyimpan, mengedit, dan menghapus catata
 https://github.com/Venn425/CapstoneProject.git
 ```
 
-> Ganti `username` dengan nama akun GitHub kamu.
 
 ---
 
